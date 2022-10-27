@@ -25,13 +25,39 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare namespace Cypress {
+    interface Chainable {
+
+        /**
+         * Custom command for getting an element by it's test specific id and will match an element with an
+         * attribute like this data-testid="save-button"
+         * @example cy.getDataQA('save-button');
+         */
+        getByDataTestId(dataTestId: string, options?: Partial<Loggable & Timeoutable & Withinable & Shadow>): Chainable<Cypress.Response<any>>;
+
+        /**
+         * Get the first descendant DOM element of a specific selector
+         * @param selector - a selector used to filter matching descendant DOM elements
+         * @example
+         *    // Find the first li within the nav
+         *    cy.get('#submitButton').findFirst('a');
+         */
+         findFirst(selector: string): Chainable<Cypress.Response<any>>;
+
+        /**
+         * Get the first descendant DOM element of a specific selector that contains a specified text
+         * @param selector - a selector used to filter matching descendant DOM elements
+         * @param textContent - element content text that needs to match
+         * @example
+         *    // Find the first li within the nav
+         *    cy.get('#yearsList').findFirstThatContains('li', '1997');
+         */
+         findFirstThatContains(selector: string, textContent: string): Chainable<Cypress.Response<any>>;
+
+          /**
+         * Custom command for clearing text in an input, typing the value and then blurring
+         * @example cy.get("input").typeText("Kim");
+         */
+        typeText(text: string): Chainable<Cypress.Response<any>>;
+    }
+}
