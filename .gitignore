@@ -1,0 +1,6 @@
+*.actual.png
+*.diff.png
+cypress/videos/**/*
+cypress/screenshots/**/*
+results/**/*
+node_modules/
