@@ -1,0 +1,7 @@
+{
+    "reporterEnabled": "spec, mocha-junit-reporter",
+    "mochaJunitReporterReporterOptions": {
+        "mochaFile": "results/results-[hash].xml"
+    },
+    "testsuitesTitle": "QA Test Site Cypress Test Suite"
+}
