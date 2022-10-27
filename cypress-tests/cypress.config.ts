@@ -1,10 +1,11 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
+  projectId: 'qhvq1y',
   e2e: {
     baseUrl: 'https://josephyap9.wixsite.com/qaetestsite',
     numTestsKeptInMemory: 5,
-    reporter: 'cypress-multi-reporters',
+    reporter: 'junit',
     reporterOptions: {
       configFile: 'reporter-config.json'
     },
@@ -13,7 +14,7 @@ export default defineConfig({
       // implement node event listeners here
     },
     defaultCommandTimeout: 15000,
-    requestTimeout: 10000,
+    requestTimeout: 120000,
     viewportHeight: 1500,
     viewportWidth: 1300
   },
